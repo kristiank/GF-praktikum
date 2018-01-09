@@ -195,3 +195,12 @@ Veel on vaja muuta lineariseerimisel kasutatud operatsioonid, et need vastaksid 
 ```
 
 RGL kasutav kood on tervenisti kirjas [FoodsEngRGL.gf failis](FoodsEngRGL.gf). Loo uus või asenda olemasolev kood sellega ja püüa aru saada mida see teeb. Proovi kas see töötab laitmatult *Minibar*-is.
+
+
+## Eesti keele RGLiga variant
+
+@todo: kui oled sisestanud inglise keele koodi ja oled selle akna juures, vali nüüd tekitada uus keele linearisatsioon. Inglise keele kood kopeeritakse sinna automaatselt. Muuda kõik vastavalt eesti keele vajadustele.
+
+### Näiteid
+ParadigmsEng -> ParadigmsEst
+this_Det on eesti keele leksikonis olemas, seda pole vaja muuta
