@@ -193,3 +193,5 @@ Veel on vaja muuta lineariseerimisel kasutatud operatsioonid, et need vastaksid 
     This kind = mkNP this_Det kind;
     Cheese  = mkCN (mkN "cheese");
 ```
+
+RGL kasutav kood on tervenisti kirjas [FoodsEngRGL.gf failis](FoodsEngRGL.gf). Loo uus või asenda olemasolev kood sellega ja püüa aru saada mida see teeb. Proovi kas see töötab laitmatult *Minibar*-is.
