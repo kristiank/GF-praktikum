@@ -132,3 +132,64 @@ Cheese  = noun "juust" "juustud";
 ```
 
 # Resource Grammar Library
+
+Eelmiselt näidatud viis programmeerida ei ole jätkusuutlik, iga rakenduse jaoks peab kopeerima korduvaid elemente sõnade morfoloogiliste kujude ja lausete konstrueerimiseks. Ka esineb nn sünkategoreemilisi kategooriaid (kõik need sõnad, mida sisestatakse otse kuskil lause sisse, nt "on" ``{s = item.s ++ "on" ++ quality.s}``).
+
+GF-il on aastate jooksul ja uude keelte lisamisel väljakujunenud traditsioon eraldada need korduvad elemendid teekidesse, mida ühiselt nimetetakse RGLiks (*Resource Grammar Library*).
+
+RGLi üldiseks põhimõteks on eraldada keelespetsiifilised korduvused ja ülekeelelised korduvused moodulitesse. Keelespetsiifilised on nt leksikon ja morfoloogia ning ülekeelelised on süntaktilised konstruktsioonid. Igal keelel on siiski ka keelespetsiifilised süntaktilised konstruktsioonid võimalikud.
+
+Moodulid on vastavalt ``Lexicon``, ``Paradigms`` ja ``Syntax`` (ning ``Extra``).
+
+Tuleb välja, et RGLi juures tekkinud "traditsioon" on oma põhimõtelt väga sarnane UD traditsiooniga. Sellest rohkem praktikumi lõpus.
+
+GFi moodulisüsteem on laiendatav sarnaselt objektorienteeritud paradigmale ja seega on nt germaani keeltel olemas ühine "protokeel". Läänemere soome keelte jaoks ei ole veel sellist ühist moodulit loodud, aga töö juures vadja keele GFiga on võimalik, et selline moodul varsti tekkib.
+
+RGL funktsioneerib sarnaselt rakendusliidesele (API) ja seega on iga keele RGLil ühised funktsiooninimetused. Üldiselt algavad kõik funktsiooninimed mk-ga. Näiteks ``mkN`` on funktsioon, mille väljundiks on nimisõna. ``mkV2`` väljundiks on kahekohaline verb. ``mkRCL`` väljundiks on relatiivlause. Ja nii edasi.
+
+Funktsioonid on üledefineeritud, mistõttu näiteks ``mkV2`` oskab valida õige ``mkV2*`` funktsiooni sõltuvalt selle sisendisse antud ja väljundist vajatud parameetritest. Teisiti öeldud, kuna funktsioonid representeerivad puu struktuuri ehk kategooriate kombineerumisi, valitakse üledefineeritud funktsiooniga õige struktuur sõltuvalt süntaktilistelt kategooriatest. Juhul kui kategooriad on valed, oskab GF kompilaator head nõu anda otse veateates.
+
+## Söögigrammatika kasutades RGLi
+
+Et kasutada RGLi, on vaja importida õiged moodulid süntaksi, leksikoni ja morfoloogia tarbeks.
+
+```Haskell
+concrete FoodsEng of Foods =
+  open SyntaxEng, LexiconEng, ParadigmsEng in {
+    --
+}
+```
+
+Seejärel on vaja muuta lineariseerimises kasutatud kategooriad. @todo: lisa seletused Utt, NP jne jaoks. Miks on objektid CN (*commont noun*) aga identifitseeritavad objektid NP-fraasid?
+
+```Haskell
+  lincat
+    Comment = Utt;
+    Quality = AP;
+    Kind = CN;
+    Item = NP;
+```
+
+Veel on vaja muuta lineariseerimisel kasutatud operatsioonid, et need vastaksid äsja spetsifitseeritud kategooriatele.
+
+```Haskell
+  lin
+    Pred item quality = mkUtt (mkCl item quality);
+```
+
+```Haskell
+  lin
+    Mod quality kind = mkCN quality kind;
+```
+
+```Haskell
+  lin
+    Very quality = mkAP (mkAdA "very") quality;
+```
+
+``this_Det`` spetsifitseeritud leksikonis, aga ``cheese`` kirje (ehk käändetabeli) "ehitame" ise.
+```Haskell
+  lin
+    This kind = mkNP this_Det kind;
+    Cheese  = mkCN (mkN "cheese");
+```
