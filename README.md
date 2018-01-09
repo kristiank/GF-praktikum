@@ -1,6 +1,6 @@
 # Sissejuhatav praktikum Grammatical Frameworki programmeerimisse
 
-Praktikum on *hands-on* laadi sukeldus Grammatical Frameworki programmeerimiskeelde, mille eesmärgiks on
+Praktikum on *hands-on* laadi sukeldus [Grammatical Frameworki](http://grammaticalframework.org/) programmeerimiskeelde, mille eesmärgiks on
 * demonstreerida GF võimalusi koostada süntaktilisi lauseid lähtudes abstraktsest semantilisest valdkonnakirjeldusest
 * siduda valdkonnakirjeldusele mitu keelt (inglise ja eesti) ja sellega näidata valdkonnakirjeldust kui tõlkemudelit
 * juhatada eesti keele kaudu sisse GF *Resource Grammar Library*'t kui ühtmoodi süntaktilist teooriat
