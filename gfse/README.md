@@ -179,17 +179,89 @@ Pizza = {
 
 
 
-### Kuidas see töötab? Mod
+### Kuidas see töötab? Det
 
 Illustreerimaks objektides kantud informatsiooni edasi-tagasi saatmist 
-ja kommunikatsiooni süntaksipuus, vaatame lähemalt funktsiooni
+ja kommunikatsiooni süntaksipuus, vaatame lähemalt kuidas ``det`` funktsioon töötab.
+
+Abstraktses grammatikas on ``This``, ``That``, ``These`` ja ``Those`` funktsioonid, 
+mis muudavad ``Kind`` kategooria liikmeid ``Item`` kategooria liikmeteks. Abstraktses
+süntaksipuus moodustavad nad seega hargmike nagu pildil näidatud.
+
+![abstraktne süntaksipuu](ekraanitõmmised/04-abstraktne-puu-warm-det-pizza.png?raw=true "Abstraktne süntaksipuu")
+
+Inglise keele konkreetses süntaksis on selle töötamine defineeritud järgmiselt
+
+```Haskell
+det : Number -> Str ->
+  {s : Number => Str} -> {s : Str ; n : Number} =
+    \n,det,noun -> {s = det ++ noun.s ! n ; n = n} ;
+``` 
+
+Seda koodi kasutatakse nt ``This  = det Sg "this";``. Kuna see kood näitlikustab 
+üht funktsionaalse programmeerimise eripära, peame seda lähemalt lahkama.
+
+``det``-funktsioon ``\n,det,noun`` võtab sisendiks kolm asja: ``n``, ``det`` ja ``noun``.
+Aga ``This`` defineerimisel ehk ``det Sg "this"`` antakse selle ainult kaks sisendit ``n = Sg`` ja ``det = "this"``.
+Funktsionaalses programmeerimises on see tavaline, ja sellega moodustatakse 
+uus funktsioon millel on ainult üks sisend (``noun``).
+
+Koodiga ``This  = det Sg "this";`` koostatakse seega järgmine funktsioon (lihtsustatult seletatud Pythoniga):
+
+```Python
+def This(noun):
+  n = "Sg"
+  det = "this"
+  
+  return {"s": (det, noun["s"][n]) }
+```
+
+ja koodiga ``These  = det Pl "these";`` koostatakse järgmine funktsioon:
+```Python
+def These(noun):
+  n = "Pl"
+  det = "these"
+  
+  return {"s": (det, noun["s"][n]) }
+```
+
+Kui hiljem koostatakse nt süntaksipuu moodustaja ``These "Pizza"`` jaoks, 
+saame panna kõik informatsioon kokku:
+
+```Python
+Pizza = {
+  "s" : {
+    "Sg" : "Pizza",
+    "Pl" : "Pizzas"
+  }
+}
+
+This(Pizza)
+These(Pizza)
+```
+
+Väljundiks on käändetabel, mille sisuks on kombineeritud õige informatsiooni. 
+Informatsioon valitakse ``n = n`` järgi elik ühilduvus arvus.
+
+Pythoni kood tagastab seega:
+```Python
+>>> These(Pizza)
+{'s': ('these', 'Pizzas')}
+```
+ja
+```Python
+>>> This(Pizza)
+{'s': ('this', 'Pizza')}
+```
+
+### Kuidas see töötab? Mod
 
 ```Haskell
 Mod quality kind = {s = \\n => quality.s ++ kind.s ! n};
 ``` 
 
 Koodiga koostatakse uus käändetabel, mille sisuks on 'quality' ja 'kind' 
-sõned kokkupanduna nii, et need kongrueeruvad arvus.
+sõned kokkupanduna nii, et ``kind`` sõna kongrueerub süntaksipuus antud arvus.
 
 Lihtsustatud Pythoni variant:
 ```Python
@@ -198,7 +270,7 @@ def Mod(quality, kind):
   modifiedKindTables = dict()
   
   for n in Number:
-    modifiedKindTables[n] = (quality["s"][n], kind["s"][n])
+    modifiedKindTables[n] = (quality["s"], kind["s"][n])
   
   return {"s": modifiedKindTables}
 
@@ -210,10 +282,7 @@ Pizza = {
 }
 
 Warm = {
-  "s" : {
-    "Sg" : "warm",
-    "Pl" : "warm"
-  }
+  "s" : "warm"
 }
 
 Mod(Warm, Pizza)
@@ -221,7 +290,6 @@ Mod(Warm, Pizza)
 
 Pythoni kood tagastab ``{'s': {'Sg': ('warm', 'Pizza'), 'Pl': ('warm', 'Pizzas')}}``.
 
-Süntaksipuus toimuv kommunikatsioon käib seega sõnade kongruentsi kohta.
 
 Tegevus: Püüa ise seletada lahti, kuidas töötab funktsioon ``Pred item quality = {s = item.s ++ copula ! item.n ++ quality.s};``.
 
@@ -229,15 +297,15 @@ Tegevus: Püüa ise seletada lahti, kuidas töötab funktsioon ``Pred item quali
 
 ## Eestikeelne konkreetne süntaks
 
-Lisa veebieditorisse veel üks konkreetne süntaks ja kopeeri sinna inglise oma.
+Nüüd lisa veebieditorisse veel üks konkreetne süntaks eesti keele jaoks ja kopeeri sinna inglise oma.
 
 Mida on meil vaja muuta selleks, et me saaksime eestikeelseid lauseid söögi kommenteerimiseks genereerida-sõeluda?
 
-* koopula konstruktsiooni ei ole vaja (see pitsa on maitsev VS need pitsad on maitsvad)
+* koopula konstruktsiooni ei ole vaja (see pitsa **on** maitsev VS need pitsad **on** maitsvad)
 * käändeid (õnneks) ei ole vaja, kõik kommentaarid kasutavad nimetavat
 * arvukategooria jääb samaks
 * kas ``regNoun`` on üldistatav eesti keele jaoks?
-* kui mitte, ajame asja ära ``noun "vein" "veinid"``
+* kui mitte, saame kasutada nt ``noun "vein" "veinid"``
 * eesti adjektiivid ühilduvad arvus
 * kas unustasin midagi?
 
@@ -255,6 +323,7 @@ Sõnastiku ladumine
 ```Haskell
 Wine  = noun "vein" "veinid";
 Cheese  = noun "juust" "juustud";
+
 ```
 
 
