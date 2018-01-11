@@ -11,7 +11,7 @@ Pärast praktikumi leiab iseõppija rohkem abi http://www.grammaticalframework.o
 # Alustamine
 
 
-## Veebieditori avamine
+## GF veebieditori avamine
 1. Ava http://grammaticalframework.com/
 1. vali [GF Cloud](http://cloud.grammaticalframework.org/)
 1. vali [GF online editor for simple multilingual grammars](http://cloud.grammaticalframework.org/gfse/)
@@ -26,7 +26,7 @@ Muuda grammatika nimi **Unnamed** asemel **Foods**.
 
 ![Muuda grammatika nimi](ekraanitõmmised/01-rename-grammar.png?raw=true "Muuda grammatika nimi")
 
-Vali tekstirežiim -- vajuta nupule *Text mode*
+Vali koodisisestamiseks tekstirežiim -- vajuta nupule *Text mode*
 
 Kopeeri abstraktne grammatika failist [Foods.gf](Foods.gf).
 
