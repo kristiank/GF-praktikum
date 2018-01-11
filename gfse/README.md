@@ -179,13 +179,15 @@ Pizza = {
 
 ### Kuidas see töötab? Mod
 
-Illustreerimaks objektide edasi-tagasi saatmist ja kommunikatsiooni süntaksipuus, vaatame lähemalt funktsiooni
+Illustreerimaks objektides kantud informatsiooni edasi-tagasi saatmist 
+ja kommunikatsiooni süntaksipuus, vaatame lähemalt funktsiooni
 
 ```Haskell
 Mod quality kind = {s = \\n => quality.s ++ kind.s ! n};
 ``` 
 
-Koodiga koostatakse uus käändetabel, mille sisuks on 'quality' ja 'kind' sõned kokkupanduna nii, et need kongrueeruvad arvus.
+Koodiga koostatakse uus käändetabel, mille sisuks on 'quality' ja 'kind' 
+sõned kokkupanduna nii, et need kongrueeruvad arvus.
 
 Lihtsustatud Pythoni variant:
 ```Python
