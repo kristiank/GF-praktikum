@@ -34,6 +34,8 @@ Tutvu märkustega ja mine tagasi juhendatud režiimile -- vajuta nupule *Guided 
 
 Proovi, kas kood kompileerub vigadeta -- vajuta nupule *Compile*.
 
+Abstraktne grammatika kireldab terve meie väikse köögimaailma võimalused (ehk kombinatoorika), 
+aga ei oska väljendada seda maailma keeleliselt. Lisame nüüd inglise keele *linearisatsioonireeglid*.
 
 ## Ingliskeelse konkreetse süntaksi sisestamine
 
