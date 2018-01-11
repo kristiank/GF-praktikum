@@ -54,6 +54,8 @@ Konkreetse süntaksi lähtekoodis on viga. Millest see tuleneb? Püüa see paran
 
 ![Viga konkreetses süntaksis](ekraanitõmmised/03-pitsa-not-part-of-abstract.png?raw=true "Viga konkreetses süntaksis")
 
+Küsimus: kuidas oskas GF meile selle vea kätte näidata?
+
 
 
 ## Proovi järele külmkapiukse magnetitega
