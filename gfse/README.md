@@ -38,13 +38,16 @@ Tutvu märkustega ja mine tagasi juhendatud režiimile -- vajuta nupule *Guided 
 Proovi, kas kood kompileerub vigadeta -- vajuta nupule *Compile*.
 
 Abstraktne grammatika kireldab terve meie väikse köögimaailma võimalused (ehk kombinatoorika), 
-aga ei oska väljendada seda maailma keeleliselt. Lisame nüüd konkreetse süntaksi inglise keele jaoks ehk *linearisatsioonireeglid*.
+aga ei oska väljendada seda maailma keeleliselt. Lisame nüüd konkreetse 
+süntaksi inglise keele jaoks ehk *linearisatsioonireeglid*.
 
 
 
 ## Ingliskeelse konkreetse süntaksi sisestamine
 
-Lisa uus konkreetne süntaks. Liiguta hiir ülevale paremasse nurka ja vajuta seal ilmuvale pluss-nupule *Add a concrete syntax*. Võid valikust valida inglise keele või *other*, pole vahet.
+Lisa uus konkreetne süntaks. Liiguta hiir ülevale paremasse nurka ja vajuta 
+seal ilmuvale pluss-nupule *Add a concrete syntax*. Võid valikust valida 
+inglise keele või *other*, pole vahet.
 
 ![Lisa konkreetne süntaks](ekraanitõmmised/02-add-concrete-syntax.png?raw=true "Lisa konkreetne süntaks")
 
@@ -60,26 +63,47 @@ Küsimus: kuidas oskas GF meile selle vea kätte näidata?
 
 ## Proovi järele külmkapiukse magnetitega
 
-Isegi kui sa ei saanud viga eemaldatud, võid nüüd järele proovida -- vajuta nupule *Minibar* (kood kompileeritakse automaatselt).
+Isegi kui sa ei saanud viga eemaldatud, võid nüüd järele proovida 
+-- vajuta nupule *Minibar* (kood kompileeritakse automaatselt).
 
 
 
 ## Kuidas see töötab?
 
-Milles seisnes pitsa-viga? Sellise nimega funktsiooni polnud abstraktses grammatikas deklareeritud. Õige on *Pitsa* asemel *Pizza*, aga mida see funktsioon teeb?
+Milles seisnes pitsa-viga? Sellise nimega funktsiooni polnud abstraktses 
+grammatikas deklareeritud. Õige on *Pitsa* asemel *Pizza*, aga mida see funktsioon teeb?
 
 ```Haskell
 Pizza = regNoun "Pizza" ;
 ```
 
-Lühidalt võib öelda, et see lisab grammatika leksikonisse pizza-sõna kõik käänded, ehk käändetabeli. Sõna mõiste GFis ongi väga konkreetselt üks käändetabel. See on üks väga klassikaline viis õpetada keeli, mäletad ladina keele tundides õpetatut?
+Lühidalt võib öelda, et see lisab grammatika leksikonisse pizza-sõna kõik 
+käändevormid, ehk käändetabeli. *Sõna* mõiste GFis ongi väga konkreetselt 
+üks käändetabel. See on üks väga klassikaline viis õpetada keeli, ehk mäletad 
+ladina keele tundides õpetatu?
 
-``Pizza`` väärtuseks saab funktsiooni ``regNoun`` väljund. Funktsionaalses programmeerimisparadigmas jäetakse tavaliselt sulud ära funktsiooni sisendi ümber, aga võid mõelda sellest kui ``regNoun("Pizza")``.
+``Pizza`` väärtuseks saab funktsiooni ``regNoun`` väljund. Funktsionaalses 
+programmeerimisparadigmas jäetakse tavaliselt sulud ära funktsiooni sisendi ümber, 
+aga võid mõelda sellest kui Pythonis vastava ``regNoun("Pizza")``.
 
-Abstraktsest grammatikast teame juba ette, et ``Pizza`` kategooria (e tüüp) peab olema ``Kind``. Inglise keele konkreetsest süntaksist saame teada, et ``Kind`` on implementeeritud kui ``Kind = {s : Number => Str} ;``. Lihtsalt öeldes tähendab see käändevormide tabelit, mille veergudeks on ``Number`` (ehk ``Sg`` ja ``Pl``, samuti konkreetses süntaksis määratud) ja tabeliväljade sisuks on ``Str``, mis on GFi sisseehitatud tüüp vastavalt teiste programmeerimiskeelte *string*.
-Täpsemalt tähendab see seda, et ``Kind`` on objekt üheainsa väljaga ``s`` ja et selle ``s``-välja tüüp on tabel arvust sõneni ehk ``Number => Str``.
+Aga kuidas see funktsioon töötab?
+Abstraktsest grammatikast teame juba ette, et ``Pizza`` kategooria (e tüüp) 
+peab olema ``Kind``. Inglise keele konkreetsest süntaksist saame teada, et ``Kind`` 
+on implementeeritud kui ``Kind = {s : Number => Str} ;``. Lihtsalt öeldes 
+tähendab see käändevormide tabelit, mille veergudeks on ``Number`` 
+(ehk ``Sg`` ja ``Pl``, samuti konkreetses süntaksis määratud) ja tabeliväljade 
+sisuks on ``Str``, mis on GFi sisseehitatud tüüp vastavalt teiste programmeerimiskeelte *string*.
+Siinkohal tuleb märkida, et ``Kind = {s : Number => Str} ;`` on keelespetsiifiline definitsioon
+ja midagi ei takista meid defineerimast *sõna* teisiti mõnes teises keeles. Näiteks eesti keeles
+võiks vaja minna definitsioon ``Kind = {s : Number => Case => Str} ;``, aga sellest rohkem allpool.
 
-Suur osa GFiga programmeerimisest on selliste objektide edasi-tagasi saatmine mööda abstraktse grammatika puustruktuuri. Mil moel seda tehakse, sõltub ehk programmeerija mõtelaadist ja järgitavast süntaksiteooriast, aga põhimõtteliselt ei määra GF selle kohta mingeid piiranguid.
+Täpsemalt tähendab see seda, et ``Kind`` on objekt üheainsa väljaga ``s`` ja et selle ``s``-välja 
+tüüp on tabel arvust sõneni ehk ``Number => Str``.
+
+Suur osa GFiga programmeerimisest on selliste objektide edasi-tagasi saatmine mööda 
+abstraktse grammatika puustruktuuri. Mil moel seda tehakse, sõltub vaid programmeerija 
+mõtelaadist ja järgitavast süntaksiteooriast, aga põhimõtteliselt ei määra GF selle 
+kohta mingeid piiranguid.
 
 Nüüd edasi. Funktsiooni parem pool ``regNoun`` on defineeritud konkreetses süntaksis:
 
