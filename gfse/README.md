@@ -105,22 +105,39 @@ abstraktse grammatika puustruktuuri. Mil moel seda tehakse, sõltub vaid program
 mõtelaadist ja järgitavast süntaksiteooriast, aga põhimõtteliselt ei määra GF selle 
 kohta mingeid piiranguid.
 
-Nüüd edasi. Funktsiooni parem pool ``regNoun`` on defineeritud konkreetses süntaksis:
+Nüüd edasi. Funktsiooni parem pool ``regNoun`` on defineeritud konkreetses süntaksis järgnevalt:
 
 ```Haskell
 regNoun : Str -> {s : Number => Str}  = \car -> noun car (car + "s") ;
 ```
 
-Ümberkirjutatuna Pythoniks, oleks see
+Lihtsustatult ümberkirjutatuna Pythoniks, oleks see
 
 ```Python
-# lihtsustamaks on 'Number' järgnevas asendatud 'int' tüübiga
-from typing import Dict
-def regNoun(car: str) -> Dict[str, Dict[int, str]]:
+def regNoun(car):
   return noun(car, car+"s")  
 ```
 
-Seega edastab funktsioon ``regNoun`` lihtsalt oma sisendi teisele funktsioonile ``noun`` muutes seejuures sisendi kaheks sõneks, millest teisele lisatakse s-täht lõppu. Kuidas töötab funktsioon ``noun``?
+Kui te ei ole harjunud programmeerima funktsionaalses paradigmas, lisan siia lisaseletusi.
+
+Funktsiooni vasak pool (``regNoun : Str -> {s : Number => Str}``) defineerib, et ``regNoun`` on funktsioon,
+mis võtab sisendiks ``Str`` ja selle väljundiks on meile juba tuttav ``{s : Number => Str}``.
+
+Funktsiooni parem pool (``\car -> noun car (car + "s")``) on nimetu lambdafunktsioon ``\`` (oma nime saab ta vasakul pool).
+Nimetu funktsiooni sisend saab muutujanimeks ``car`` ja funktsiooni sisu on ``noun car (car + "s")``.
+
+Pythonis on ka võimalik määrata muutujate tüüpe, ja tõetruum Pythoni kood oleks järgmine:
+
+```Python
+# lihtsustamaks on 'Number' järgnevas asendatud 'str' tüübiga
+from typing import Dict
+def regNoun(car: str) -> Dict[str, Dict[str, str]]:
+  return noun(car, car+"s")  
+```
+
+Seega edastab funktsioon ``regNoun`` lihtsalt oma sisendi teisele funktsioonile 
+``noun`` muutes seejuures sisendi kaheks sõneks, millest teisele lisatakse s-täht 
+lõppu. Kuidas töötab aga funktsioon ``noun``?
 
 ```Haskell
 noun : Str -> Str -> {s : Number => Str}  = \man,men -> {
@@ -143,8 +160,10 @@ def noun(man, men):
     }
 ```
 
-See on praktiliselt võetud "worst-case" stsenaariumi funktsioon, sisestamaks irregulaarseid sõnu nagu ``noun "mouse" "mice"``.
-Kõik regulaarsed sõnad saab sisestada ühe argumendiga ``regNoun "cat"``.
+``noun`` on praktiliselt võetud "worst-case" stsenaariumi funktsioon, 
+sisestamaks irregulaarsete sõnade käändetabelid, nagu ``noun "mouse" "mice"``.
+Kõik regulaarsed sõnad saab sisestada ühe argumendiga ``regNoun "cat"``, mis siis 
+edastatakse ``noun "cat" "cats"``.
 
 @todo: Kas lisada seletus funktsioonile ``Mod quality kind = {s = \\n => quality.s ++ kind.s ! n};`` või ``Pred item quality = {s = item.s ++ copula ! item.n ++ quality.s};``. See illustreeriks ilusti objektide edastamist süntaksipuus...
 
