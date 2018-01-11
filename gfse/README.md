@@ -1,7 +1,11 @@
-# Köögikommentaaride praktikum
+# GF Köögigrammatika praktikum
 
 Koostame väikse grammatika, mille abil me saame moodustada lauseid
-söögi kohta.
+söögi kohta. See on traditsiooniks muutunud viis alustada GF-iga.
+
+Praktikum vajab ainult internetiühendust ja ei vaja eraldi installitud programme.
+Praktikumi tekst püüab kõik tehtu seletada otse teksti sees. 
+Pärast praktikumi leiab iseõppija rohkem abi http://www.grammaticalframework.org/ leheküljelt.
 
 
 # Alustamine
