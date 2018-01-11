@@ -1,4 +1,4 @@
-# Söögikommentaaride praktikum
+# Köögikommentaaride praktikum
 
 Koostame väikse grammatika, mille abil me saame moodustada lauseid
 söögi kohta.
@@ -149,7 +149,7 @@ RGL funktsioneerib sarnaselt rakendusliidesele (API) ja seega on iga keele RGLil
 
 Funktsioonid on üledefineeritud, mistõttu näiteks ``mkV2`` oskab valida õige ``mkV2*`` funktsiooni sõltuvalt selle sisendisse antud ja väljundist vajatud parameetritest. Teisiti öeldud, kuna funktsioonid representeerivad puu struktuuri ehk kategooriate kombineerumisi, valitakse üledefineeritud funktsiooniga õige struktuur sõltuvalt süntaktilistelt kategooriatest. Juhul kui kategooriad on valed, oskab GF kompilaator head nõu anda otse veateates.
 
-## Söögigrammatika kasutades RGLi
+## Köögigrammatika toetudes RGLile
 
 Et kasutada RGLi, on vaja importida õiged moodulid süntaksi, leksikoni ja morfoloogia tarbeks.
 
