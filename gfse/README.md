@@ -8,7 +8,9 @@ Praktikumi tekst püüab kõik tehtu seletada otse teksti sees.
 Pärast praktikumi leiab iseõppija rohkem abi http://www.grammaticalframework.org/ leheküljelt.
 
 
+
 # Alustamine
+
 
 
 ## GF veebieditori avamine
@@ -18,6 +20,7 @@ Pärast praktikumi leiab iseõppija rohkem abi http://www.grammaticalframework.o
 1. vali *Your grammars* alt *New grammar*
 
 Oled jõudnud veebieditorisse, mis kuvab tühja abstraktset grammatikat nimega *Unnamed*.
+
 
 
 ## Abstraktse grammatika sisestamine
@@ -37,6 +40,8 @@ Proovi, kas kood kompileerub vigadeta -- vajuta nupule *Compile*.
 Abstraktne grammatika kireldab terve meie väikse köögimaailma võimalused (ehk kombinatoorika), 
 aga ei oska väljendada seda maailma keeleliselt. Lisame nüüd konkreetse süntaksi inglise keele jaoks ehk *linearisatsioonireeglid*.
 
+
+
 ## Ingliskeelse konkreetse süntaksi sisestamine
 
 Lisa uus konkreetne süntaks. Liiguta hiir ülevale paremasse nurka ja vajuta seal ilmuvale pluss-nupule *Add a concrete syntax*. Võid valikust valida inglise keele või *other*, pole vahet.
@@ -50,9 +55,11 @@ Konkreetse süntaksi lähtekoodis on viga. Millest see tuleneb? Püüa see paran
 ![Viga konkreetses süntaksis](ekraanitõmmised/03-pitsa-not-part-of-abstract.png?raw=true "Viga konkreetses süntaksis")
 
 
+
 ## Proovi järele külmkapiukse magnetitega
 
 Isegi kui sa ei saanud viga eemaldatud, võid nüüd järele proovida -- vajuta nupule *Minibar* (kood kompileeritakse automaatselt).
+
 
 
 ## Kuidas see töötab?
@@ -116,6 +123,7 @@ Kõik regulaarsed sõnad saab sisestada ühe argumendiga ``regNoun "cat"``.
 @todo: Kas lisada seletus funktsioonile ``Mod quality kind = {s = \\n => quality.s ++ kind.s ! n};`` või ``Pred item quality = {s = item.s ++ copula ! item.n ++ quality.s};``. See illustreeriks ilusti objektide edastamist süntaksipuus...
 
 
+
 ## Eestikeelne konkreetne süntaks
 
 Lisa veebieditorisse veel üks konkreetne süntaks ja kopeeri sinna inglise oma.
@@ -133,6 +141,7 @@ Mida on meil vaja muuta selleks, et me saaksime eestikeelseid lauseid söögi ko
 Proovi viia eestikeelse konkreetse süntaksi kood lõpuni.
 
 
+
 ### Näiteid
 Ilma koopulata ``Pred``
 ```Haskell
@@ -144,6 +153,7 @@ Sõnastiku ladumine
 Wine  = noun "vein" "veinid";
 Cheese  = noun "juust" "juustud";
 ```
+
 
 
 # Resource Grammar Library
@@ -163,6 +173,7 @@ GFi moodulisüsteem on laiendatav sarnaselt objektorienteeritud paradigmale ja s
 RGL funktsioneerib sarnaselt rakendusliidesele (API) ja seega on iga keele RGLil ühised funktsiooninimetused. Üldiselt algavad kõik funktsiooninimed mk-ga. Näiteks ``mkN`` on funktsioon, mille väljundiks on nimisõna. ``mkV2`` väljundiks on kahekohaline verb. ``mkRCL`` väljundiks on relatiivlause. Ja nii edasi.
 
 Funktsioonid on üledefineeritud, mistõttu näiteks ``mkV2`` oskab valida õige ``mkV2*`` funktsiooni sõltuvalt selle sisendisse antud ja väljundist vajatud parameetritest. Teisiti öeldud, kuna funktsioonid representeerivad puu struktuuri ehk kategooriate kombineerumisi, valitakse üledefineeritud funktsiooniga õige struktuur sõltuvalt süntaktilistelt kategooriatest. Juhul kui kategooriad on valed, oskab GF kompilaator head nõu anda otse veateates.
+
 
 
 ## Köögigrammatika toetudes RGLile
@@ -213,9 +224,11 @@ Veel on vaja muuta lineariseerimisel kasutatud operatsioonid, et need vastaksid 
 RGL kasutav kood on tervenisti kirjas [FoodsEngRGL.gf failis](FoodsEngRGL.gf). Loo uus või asenda olemasolev kood sellega ja püüa aru saada mida see teeb. Proovi kas see töötab laitmatult *Minibar*-is.
 
 
+
 ## Eesti keele RGLiga variant
 
 @todo: kui oled sisestanud inglise keele koodi ja oled selle akna juures, vali nüüd tekitada uus keele linearisatsioon. Inglise keele kood kopeeritakse sinna automaatselt. Muuda kõik vastavalt eesti keele vajadustele.
+
 
 
 ### Näiteid
