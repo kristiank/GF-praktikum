@@ -4,8 +4,10 @@ Koostame väikse grammatika, mille abil me saame moodustada lauseid
 söögi kohta. See on traditsiooniks muutunud viis alustada GF-iga.
 
 Praktikum vajab ainult internetiühendust ja ei vaja eraldi installitud programme.
-Praktikumi tekst püüab kõik tehtu seletada otse teksti sees. 
+Praktikumi tekst püüab kõik tehtu seletada otse teksti sees ja illustreerib GF-koodi 
+paralleelselt Pythoni koodiga. 
 Pärast praktikumi leiab iseõppija rohkem abi http://www.grammaticalframework.org/ leheküljelt.
+On olemas ka Pythoniprogrammeerijatele mõeldud "[GF for Python programmers](https://github.com/daherb/GF-for-Python-programmers)"
 
 
 
