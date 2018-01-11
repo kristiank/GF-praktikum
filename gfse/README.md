@@ -30,7 +30,7 @@ Vali koodisisestamiseks tekstirežiim -- vajuta nupule *Text mode*
 
 Kopeeri abstraktne grammatika failist [Foods.gf](Foods.gf).
 
-Tutvu märkustega ja vali juhendatud režiim -- vajuta nupule *Guided mode*.
+Tutvu märkustega ja mine tagasi juhendatud režiimile -- vajuta nupule *Guided mode*.
 
 Proovi, kas kood kompileerub vigadeta -- vajuta nupule *Compile*.
 
