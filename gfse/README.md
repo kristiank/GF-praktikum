@@ -68,7 +68,7 @@ Isegi kui sa ei saanud viga eemaldatud, võid nüüd järele proovida
 
 
 
-## Kuidas see töötab?
+## Kuidas see töötab? Pizza
 
 Milles seisnes pitsa-viga? Sellise nimega funktsiooni polnud abstraktses 
 grammatikas deklareeritud. Õige on *Pitsa* asemel *Pizza*, aga mida see funktsioon teeb?
@@ -165,7 +165,61 @@ sisestamaks irregulaarsete sõnade käändetabelid, nagu ``noun "mouse" "mice"``
 Kõik regulaarsed sõnad saab sisestada ühe argumendiga ``regNoun "cat"``, mis siis 
 edastatakse ``noun "cat" "cats"``.
 
-@todo: Kas lisada seletus funktsioonile ``Mod quality kind = {s = \\n => quality.s ++ kind.s ! n};`` või ``Pred item quality = {s = item.s ++ copula ! item.n ++ quality.s};``. See illustreeriks ilusti objektide edastamist süntaksipuus...
+Lõppkokkuvõtteks saab siis ``Pizza`` enda väärtuseks käändetabeli sõnedega *Pizza* ja *Pizzas*:
+```Haskell
+Pizza = {
+  s = table {
+    Sg => "Pizza";
+    Pl => "Pizzas"
+  }
+}
+ ```
+
+
+
+### Kuidas see töötab? Mod
+
+Illustreerimaks objektide edasi-tagasi saatmist ja kommunikatsiooni süntaksipuus, vaatame lähemalt funktsiooni
+
+```Haskell
+Mod quality kind = {s = \\n => quality.s ++ kind.s ! n};
+``` 
+
+Koodiga koostatakse uus käändetabel, mille sisuks on 'quality' ja 'kind' sõned kokkupanduna nii, et need kongrueeruvad arvus.
+
+Lihtsustatud Pythoni variant:
+```Python
+def Mod(quality, kind):
+  Number = ("Sg", "Pl")
+  modifiedKindTables = dict()
+  
+  for n in Number:
+    modifiedKindTables[n] = (quality["s"][n], kind["s"][n])
+  
+  return {"s": modifiedKindTables}
+
+Pizza = {
+  "s" : {
+    "Sg" : "Pizza",
+    "Pl" : "Pizzas"
+  }
+}
+
+Warm = {
+  "s" : {
+    "Sg" : "warm",
+    "Pl" : "warm"
+  }
+}
+
+Mod(Warm, Pizza)
+```
+
+Pythoni kood tagastab ``{'s': {'Sg': ('warm', 'Pizza'), 'Pl': ('warm', 'Pizzas')}}``.
+
+Süntaksipuus toimuv kommunikatsioon käib seega sõnade kongruentsi kohta.
+
+Tegevus: Püüa ise seletada lahti, kuidas töötab funktsioon ``Pred item quality = {s = item.s ++ copula ! item.n ++ quality.s};``.
 
 
 
