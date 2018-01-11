@@ -35,7 +35,7 @@ Tutvu märkustega ja mine tagasi juhendatud režiimile -- vajuta nupule *Guided 
 Proovi, kas kood kompileerub vigadeta -- vajuta nupule *Compile*.
 
 Abstraktne grammatika kireldab terve meie väikse köögimaailma võimalused (ehk kombinatoorika), 
-aga ei oska väljendada seda maailma keeleliselt. Lisame nüüd inglise keele *linearisatsioonireeglid*.
+aga ei oska väljendada seda maailma keeleliselt. Lisame nüüd konkreetse süntaksi inglise keele jaoks ehk *linearisatsioonireeglid*.
 
 ## Ingliskeelse konkreetse süntaksi sisestamine
 
