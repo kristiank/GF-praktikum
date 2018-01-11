@@ -1,31 +1,45 @@
 abstract Foods = {
   flags startcat = Comment ;
+  
+  -- Kommentaaride koostamiseks läheb meil väikse maailma ontoloogias vaja neli kategooriat
+  --  * 'Comment' on tervik lihtlause (vrd süntaksipuude 'S')
+  --  * 'Kind' on meie köögimaailmas esinevad objektid
+  --  * 'Item' on ühe köögimaailmas esineva objekti konkreetne mainimine
+  --  * 'Quality' on objektide võimalikud kvalileedid ehk omadused
   cat
-    Comment ; Item ; Kind ; Quality ;
+    Comment ; Kind ; Item ; Quality ;
+  
+  -- Kui kategooriad ('cat') on kategoriaalse grammatika "moodustajad",
+  -- siis funktsioonid ('fun') on nende võimalikud kombinatsioonid e puustruktuurid
   fun
     -- Kommentaarilause koosneb asjast ja omadusest
     Pred  : Item -> Quality -> Comment ;
     
-    -- Asi (e Item) on mingit kindlat liiki objekt
-    -- Selgitus maailmas on kalu (Kind), minu kala maitseb hästi (Item)
+    -- Objektid (e 'Item') on mingit kindlat liiki asjad, aga et nendest rääkida saada,
+    -- siis peame viitama nendest mingile kindlale üksikule juhtumile.
+    -- Umbes, et "maailmas on kalu" (Kind) aga "just see kala maitseb hästi" (Item)
     This  : Kind -> Item ;
     That  : Kind -> Item ;
     These : Kind -> Item ;
     Those : Kind -> Item ;
     
-    -- Modifitseerimine varustab objektile omaduse ehk kvaliteedi
-    Mod : Quality -> Kind -> Kind ;
-    
-    -- Kõik maailma objektid
+    -- Siin on loetletud kõik meie köögimaailma objektide liigid
     Wine   : Kind ;
     Cheese : Kind ;
     Fish   : Kind ;
     Pizza  : Kind ;
     
+    -- Modifitseerimine varustab objektile omaduse ehk kvaliteedi
+    Mod : Quality -> Kind -> Kind ;
+    
     -- Omadusel võib olla suurendaja (millel võib olla suurendaja jne)
     Very : Quality -> Quality ;
     
-    -- Kõik maailma omadused
+    -- Siin on loetletud kõik me köögimaailma võimalikud omadused
     Fresh, Warm, Italian,
       Expensive, Delicious, Boring : Quality ;
+    -- NB! see loend on samaväärne järgmise loendiga:
+    -- Fresh : Quality ;
+    -- Warm  : Quality ;
+    --  ... jne ...
 }
