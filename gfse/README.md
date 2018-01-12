@@ -319,14 +319,14 @@ Proovi viia eestikeelse konkreetse süntaksi kood lõpuni.
 
 ### Näiteid
 
-Sõnastiku ladumine
+#### Sõnastiku ladumine
 ```Haskell
 Wine    = noun "vein" "veinid";
 Cheese  = noun "juust" "juustud";
 Italian = noun "itaaliapärane" "itaaliapärased"; -- NB! kasutame 'noun'
 ```
 
-Adjektiivide ühildumine arvus
+#### Adjektiivide ühildumine arvus
 ```Haskell
 lincat
   Quality = {s : Number => Str};
@@ -338,7 +338,7 @@ Kas näed erinevust?
 * Quality lineariseerimiskategooria on nüüd sama, mis Item
 * ``Mod`` funktsioonis valitakse õige käändevorm välja (``.`` on projektsiooni-operaator ehk andmevälja valija. ``!`` on selektor ehk tabeliveeru valija)
 
-Ilma koopulata ``Pred``
+#### Ilma koopulata ``Pred``
 ```Haskell
 Pred item quality = {s = item.s ++ "on" ++ quality.s ! item.n};
 ```
