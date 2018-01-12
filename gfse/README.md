@@ -290,7 +290,7 @@ Warm = {
 
 Miks tagastatakse terve käändetabel Sg ja Pl kirjetega? Sest olles süntaksi puus 
 ``Mod`` juures, ei oska me veel teada, mis arvuga tegu on. Seda me teame alles 
-liikudes ``These`` juurde.
+liikudes ``These`` juurde. Teisisõnu, arv on tüübi Item omadus, mitte Kind tüübi oma.
 
 ![abstraktne süntaksipuu](ekraanitõmmised/05-abstraktne-puu-det-warm-pizza-delicious.png?raw=true "Abstraktne süntaksipuu")
 
@@ -318,17 +318,32 @@ Proovi viia eestikeelse konkreetse süntaksi kood lõpuni.
 
 
 ### Näiteid
-Ilma koopulata ``Pred``
-```Haskell
-Pred item quality = {s = item.s ++ "on" ++ quality.s};
-```
 
 Sõnastiku ladumine
 ```Haskell
-Wine  = noun "vein" "veinid";
+Wine    = noun "vein" "veinid";
 Cheese  = noun "juust" "juustud";
-
+Italian = noun "itaaliapärane" "itaaliapärased"; -- NB! kasutame 'noun'
 ```
+
+Adjektiivide ühildumine arvus
+```Haskell
+lincat
+  Quality = {s : Number => Str};
+
+lin
+  Mod quality kind = {s = \\n => quality.s ! n ++ kind.s ! n};
+```
+Kas näed erinevust?
+* Quality lineariseerimiskategooria on nüüd sama, mis Item
+* ``Mod`` funktsioonis valitakse õige käändevorm välja (``.`` on projektsiooni-operaator ehk andmevälja valija. ``!`` on selektor ehk tabeliveeru valija)
+
+Ilma koopulata ``Pred``
+```Haskell
+Pred item quality = {s = item.s ++ "on" ++ quality.s ! item.n};
+```
+
+Küsimus: mida me siinkohal kasutame, et valida omadussõna õige kääne? See on samuti üks viis, kuidas kommunikatsiooni korraldada süntaksipuus.
 
 
 
