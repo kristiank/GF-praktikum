@@ -190,7 +190,7 @@ süntaksipuus moodustavad nad seega hargmike nagu pildil näidatud.
 
 ![abstraktne süntaksipuu](ekraanitõmmised/04-abstraktne-puu-warm-det-pizza.png?raw=true "Abstraktne süntaksipuu")
 
-Inglise keele konkreetses süntaksis on selle töötamine defineeritud järgmiselt
+Inglise keele konkreetses süntaksis on määratleja (*determiner*) töötamine defineeritud järgmiselt
 
 ```Haskell
 det : Number -> Str ->
@@ -198,13 +198,17 @@ det : Number -> Str ->
     \n,det,noun -> {s = det ++ noun.s ! n ; n = n} ;
 ``` 
 
-Seda koodi kasutatakse nt ``This  = det Sg "this";``. Kuna see kood näitlikustab 
-üht funktsionaalse programmeerimise eripära, peame seda lähemalt lahkama.
+Seda koodi kasutatakse mh ``This  = det Sg "this";`` ja ``These  = det Sg "these";``. 
+Kuna see kood näitlikustab üht funktsionaalse programmeerimise eripära, nimelt 
+funktsiooni osalist rakendamist (*partial application*), peame seda juhtumit lähemalt vaatama.
 
-``det``-funktsioon ``\n,det,noun`` võtab sisendiks kolm asja: ``n``, ``det`` ja ``noun``.
-Aga ``This`` defineerimisel ehk ``det Sg "this"`` antakse selle ainult kaks sisendit ``n = Sg`` ja ``det = "this"``.
-Funktsionaalses programmeerimises on see tavaline, ja sellega moodustatakse 
-uus funktsioon millel on ainult üks sisend (``noun``).
+Funktsiooni osalise rakendamise puhul ei anta funktsioonile kõiki selle argumente. Niisiis
+ei rakendata funktsiooni lõpuni ja ei tagastata väärtust vaid hoopis uus funktsioon.
+
+``det``-funktsioon ``\n,det,noun`` võtab sisendiks kolm argumenti: ``n``, ``det`` ja ``noun``.
+Aga ``This`` defineerimisel ehk ``det Sg "this"`` antakse sellele ainult kaks argumenti sisendiks 
+``n = Sg`` ja ``det = "this"``. Funktsionaalses programmeerimises on see tavaline, ja niiviisi moodustatakse 
+uus funktsioon millel, on ainult üks sisend (``noun``).
 
 Koodiga ``This  = det Sg "this";`` koostatakse seega järgmine funktsioon (lihtsustatult seletatud Pythoniga):
 
@@ -216,7 +220,7 @@ def This(noun):
   return {"s": (det, noun["s"][n]) }
 ```
 
-ja koodiga ``These  = det Pl "these";`` koostatakse järgmine funktsioon:
+ja koodiga ``These  = det Pl "these";`` koostatakse järelikult järgmine funktsioon:
 ```Python
 def These(noun):
   n = "Pl"
@@ -225,8 +229,8 @@ def These(noun):
   return {"s": (det, noun["s"][n]) }
 ```
 
-Kui hiljem koostatakse nt süntaksipuu moodustaja ``These "Pizza"`` jaoks, 
-saame panna kõik informatsioon kokku:
+See funktsioon elab süntaksipuus ja kui hiljem koostatakse nt moodustaja ``These "Pizza"`` jaoks, 
+saab funktsioon panna kõik informatsiooni kokku:
 
 ```Python
 Pizza = {
@@ -240,7 +244,7 @@ This(Pizza)
 These(Pizza)
 ```
 
-Väljundiks on käändetabel, mille sisuks on kombineeritud õige informatsiooni. 
+Väljundiks on käändetabel, mille sisuks on kombineeritud õige informatsioon. 
 Informatsioon valitakse ``n = n`` järgi elik ühilduvus arvus.
 
 Pythoni kood tagastab seega:
@@ -253,6 +257,8 @@ ja
 >>> This(Pizza)
 {'s': ('this', 'Pizza')}
 ```
+
+
 
 ### Kuidas see töötab? Mod
 
