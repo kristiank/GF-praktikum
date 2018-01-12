@@ -397,7 +397,7 @@ Juhul kui kategooriad on valed, oskab GF kompilaator head nõu anda veateates.
 
 
 
-## Köögigrammatika uuesti ja toetudes RGLile
+# Köögigrammatika uuesti ja toetudes RGLile
 
 Et kasutada RGLi, on vaja importida õiged moodulid süntaksi, leksikoni 
 ja morfoloogia tarbeks.
