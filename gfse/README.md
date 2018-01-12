@@ -70,7 +70,7 @@ Isegi kui sa ei saanud viga eemaldatud, võid nüüd järele proovida
 
 
 
-## Kuidas see töötab? Pizza
+## Kuidas see töötab? Pizza-funktsioon
 
 Milles seisnes pitsa-viga? Sellise nimega funktsiooni polnud abstraktses 
 grammatikas deklareeritud. Õige on *Pitsa* asemel *Pizza*, aga mida see funktsioon teeb?
@@ -179,7 +179,7 @@ Pizza = {
 
 
 
-### Kuidas see töötab? Det
+### Kuidas see töötab? Det-funktsioonid
 
 Illustreerimaks objektides kantud informatsiooni edasi-tagasi saatmist 
 ja kommunikatsiooni süntaksipuus, vaatame lähemalt kuidas ``det`` funktsioon töötab.
@@ -251,7 +251,7 @@ Informatsioon valitakse ``n = n`` järgi elik ühilduvus arvus.
 
 
 
-### Kuidas see töötab? Mod
+### Kuidas see töötab? Mod-funktsioon
 
 Köögigrammatikas on ``Mod``-funktsiooni ülesanne varustada nimisõna atribuudiga ehk täiendiga.
 
