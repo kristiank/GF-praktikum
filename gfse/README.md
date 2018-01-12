@@ -253,14 +253,14 @@ Informatsioon valitakse ``n = n`` järgi elik ühilduvus arvus.
 
 ### Kuidas see töötab? Mod
 
-``Mod``-funktsioon 
+Köögigrammatikas on ``Mod``-funktsiooni ülesanne varustada nimisõna atribuudiga ehk täiendiga.
 
 ```Haskell
 Mod quality kind = {s = \\n => quality.s ++ kind.s ! n};
 ``` 
 
-Koodiga koostatakse uus käändetabel, mille sisuks on 'quality' ja 'kind' 
-sõned kokkupanduna nii, et ``kind`` sõna kongrueerub süntaksipuus antud arvus.
+Koodiga koostatakse uus käändetabel, mille sisuks on argumendiks antud 'quality' 
+'kind' sõned.
 
 Lihtsustatud Pythoni variant:
 ```Python
@@ -284,10 +284,15 @@ Warm = {
   "s" : "warm"
 }
 
-Mod(Warm, Pizza)
+>>> Mod(Warm, Pizza)
+{'s': {'Sg': ('warm', 'Pizza'), 'Pl': ('warm', 'Pizzas')}}
 ```
 
-Pythoni kood tagastab ``{'s': {'Sg': ('warm', 'Pizza'), 'Pl': ('warm', 'Pizzas')}}``.
+Miks tagastatakse terve käändetabel Sg ja Pl kirjetega? Sest olles süntaksi puus 
+``Mod`` juures, ei oska me veel teada, mis arvuga tegu on. Seda me teame alles 
+liikudes ``These`` juurde.
+
+![abstraktne süntaksipuu](ekraanitõmmised/05-abstraktne-puu-det-warm-pizza-delicious.png?raw=true "Abstraktne süntaksipuu")
 
 
 Tegevus: Püüa ise seletada lahti, kuidas töötab funktsioon ``Pred item quality = {s = item.s ++ copula ! item.n ++ quality.s};``.
