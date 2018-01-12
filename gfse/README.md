@@ -229,7 +229,7 @@ def These(noun):
   return {"s": (det, noun["s"][n]) }
 ```
 
-See funktsioon elab süntaksipuus ja kui hiljem koostatakse nt moodustaja ``These "Pizza"`` jaoks, 
+See funktsioon elab süntaksipuus ja kui hiljem koostatakse nt moodustaja ``These Pizza`` jaoks, 
 saab funktsioon panna kõik informatsiooni kokku:
 
 ```Python
