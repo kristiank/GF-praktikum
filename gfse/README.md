@@ -317,7 +317,13 @@ Proovi viia eestikeelse konkreetse süntaksi kood lõpuni.
 
 
 
-### Näiteid
+### Koodinäiteid
+
+Järgmised koodinäited on piisavad, et saada eestikeelse konkreetse grammatika
+tööle. Sinu ülesandeks on need õigesti paigutada ja ülejäänud ingliskeelsed sõnad 
+tõlkida.
+
+
 
 #### Sõnastiku ladumine
 ```Haskell
@@ -325,6 +331,8 @@ Wine    = noun "vein" "veinid";
 Cheese  = noun "juust" "juustud";
 Italian = noun "itaaliapärane" "itaaliapärased"; -- NB! kasutame 'noun'
 ```
+
+
 
 #### Adjektiivide ühildumine arvus
 ```Haskell
@@ -338,6 +346,8 @@ Kas näed erinevust?
 * Quality lineariseerimiskategooria on nüüd sama, mis Item
 * ``Mod`` funktsioonis valitakse õige käändevorm välja (``.`` on projektsiooni-operaator ehk andmevälja valija. ``!`` on selektor ehk tabeliveeru valija)
 
+
+
 #### Ilma koopulata ``Pred``
 ```Haskell
 Pred item quality = {s = item.s ++ "on" ++ quality.s ! item.n};
@@ -349,19 +359,19 @@ Küsimus: mida me siinkohal kasutame, et valida omadussõna õige kääne? See o
 
 # Resource Grammar Library
 
-Eelmiselt näidatud viis programmeerida ei ole jätkusuutlik, iga rakenduse 
-jaoks peab kopeerima korduvaid elemente sõnade morfoloogiliste kujude ja 
-lausete konstrueerimiseks. Ka esineb nn sünkategoreemilisi kategooriaid 
-(kõik need sõnad, mida sisestatakse otse kuskil lause sisse, nt "on" ``{s = item.s ++ "on" ++ quality.s}``).
+Eelmiselt näidatud viis programmeerida ei ole jätkusuutlik mitmel põhjusel
+* iga rakenduse jaoks peab kopeerima korduvaid lingvistilisi elemente sõnade morfoloogiliste kujude ja lausete konstrueerimiseks
+* esineb nn sünkategoreemilisi kategooriaid (kõik need sõnad, mida sisestatakse otse kuskil lause sisse, nt "on" ``{s = item.s ++ "on" ++ quality.s}``)
+* kood ei ole piisavalt abstraktne -- mh kategooriad on defineeritud andmetüüpidena
 
 GF-il on aastate jooksul ja uute keelte lisamisel väljakujunenud traditsioon 
 eraldada need korduvad elemendid teekidesse, mida ühiselt nimetetakse 
 RGLiks (*Resource Grammar Library*).
 
 RGLi üldiseks põhimõteks on eraldada keelespetsiifilised korduvused ja 
-ülekeelelised korduvused moodulitesse. Keelespetsiifilised on nt leksikon 
+ülekeelelised korduvused eri moodulitesse. Keelespetsiifilised on nt leksikon 
 ja morfoloogia ning ülekeelelised on süntaktilised konstruktsioonid. Igal 
-keelel on siiski ka keelespetsiifilised süntaktilised konstruktsioonid võimalikud.
+keelel on siiski võimalik ka keelespetsiifilisi süntaktilisi konstruktsioone lisada.
 
 Moodulid on vastavalt ``Lexicon``, ``Paradigms`` ja ``Syntax`` (ning ``Extra``).
 
@@ -369,21 +379,21 @@ Tuleb välja, et RGLi juures tekkinud "traditsioon" on oma põhimõtelt väga
 sarnane UD traditsiooniga. Sellest rohkem praktikumi lõpus.
 
 GFi moodulisüsteem on laiendatav sarnaselt objektorienteeritud paradigmale 
-ja seega on nt germaani keeltel olemas ühine "protokeel". Läänemere soome 
+ja seega on nt germaani keeltel olemas ühine "protokeele" moodul. Läänemere soome 
 keelte jaoks ei ole veel sellist ühist moodulit loodud, aga töö juures 
-vadja keele GFiga on võimalik, et selline moodul varsti tekkib.
+vadja keele GFiga on võimalik, et selline moodul kunagi luuakse.
 
 RGL funktsioneerib sarnaselt rakendusliidesele (API) ja seega on iga keele 
 RGLil ühised funktsiooninimetused. Üldiselt algavad kõik funktsiooninimed mk-ga. 
 Näiteks ``mkN`` on funktsioon, mille väljundiks on nimisõna. ``mkV2`` väljundiks 
 on kahekohaline verb. ``mkRCL`` väljundiks on relatiivlause. Ja nii edasi.
 
-Funktsioonid on üledefineeritud, mistõttu näiteks ``mkV2`` oskab valida 
+Funktsiooni(nime)d on üledefineeritud, mistõttu näiteks ``mkV2`` oskab valida 
 õige ``mkV2*`` funktsiooni sõltuvalt selle sisendisse antud ja väljundist 
 vajatud parameetritest. Teisiti öeldud, kuna funktsioonid representeerivad 
 puu struktuuri ehk kategooriate kombineerumisi, valitakse üledefineeritud 
-funktsiooniga õige struktuur sõltuvalt süntaktilistelt kategooriatest. J
-uhul kui kategooriad on valed, oskab GF kompilaator head nõu anda otse veateates.
+funktsiooniga õige struktuur sõltuvalt süntaktilistelt kategooriatest. 
+Juhul kui kategooriad on valed, oskab GF kompilaator head nõu anda veateates.
 
 
 
@@ -400,40 +410,48 @@ concrete FoodsEng of Foods =
 ```
 
 Seejärel on vaja muuta lineariseerimises kasutatud kategooriad. 
-@todo: lisa seletused Utt, NP jne jaoks. Miks on objektid CN (*commont noun*) aga identifitseeritavad objektid NP-fraasid?
 
 ```Haskell
-  lincat
-    Comment = Utt;
-    Quality = AP;
-    Kind = CN;
-    Item = NP;
+lincat
+  Comment = Utt;
+  Quality = AP;
+  Kind = CN;
+  Item = NP;
 ```
+
+``Utt`` (*utterance*) ehk lausung on diskursuse üksus, mis võib olla lause, küsimus, käsk vms. 
+``Cl`` (*clause*) on ühtmoodi lause, mis väljendab mingit propositsiooni nagu nt mõni fakt "see pizza on soe". 
+Lauseliike on palju aga meie siinses väikses köögigrammatikas läheb meil vaja ainult affirmatiivseid lauseid oleviku pöördes.
+``AP`` (*adjective phrase*) ehk adjektiivifraas.
+``CN`` (*common noun*) ehk üldnimi. 
+``NP`` (*noun phrase*) ehk noomenifraas.
+
+Kategooriad on omaette teema, millest siinjuures rohkem juttu ei tule.
 
 Veel on vaja muuta lineariseerimisel kasutatud operatsioonid, et need 
 vastaksid äsja spetsifitseeritud kategooriatele.
 
 ```Haskell
-  lin
-    Pred item quality = mkUtt (mkCl item quality);
+lin
+  Pred item quality = mkUtt (mkCl item quality);
 ```
 
 ```Haskell
-  lin
-    Mod quality kind = mkCN quality kind;
+lin
+  Mod quality kind = mkCN quality kind;
 ```
 
 ```Haskell
-  lin
-    Very quality = mkAP (mkAdA "very") quality;
+lin
+  Very quality = mkAP (mkAdA "very") quality;
 ```
 
 ``this_Det`` spetsifitseeritud leksikonis, aga ``cheese`` kirje (ehk 
 käändetabeli) "ehitame" ise.
 ```Haskell
-  lin
-    This kind = mkNP this_Det kind;
-    Cheese  = mkCN (mkN "cheese");
+lin
+  This kind = mkNP this_Det kind;
+  Cheese  = mkCN (mkN "cheese");
 ```
 
 RGL kasutav kood on tervenisti kirjas [FoodsEngRGL.gf failis](FoodsEngRGL.gf). 
