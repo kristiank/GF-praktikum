@@ -240,27 +240,20 @@ Pizza = {
   }
 }
 
-This(Pizza)
-These(Pizza)
+>>> These(Pizza)
+{'s': ('these', 'Pizzas')}
+>>> This(Pizza)
+{'s': ('this', 'Pizza')}
 ```
 
 Väljundiks on käändetabel, mille sisuks on kombineeritud õige informatsioon. 
 Informatsioon valitakse ``n = n`` järgi elik ühilduvus arvus.
 
-Pythoni kood tagastab seega:
-```Python
->>> These(Pizza)
-{'s': ('these', 'Pizzas')}
-```
-ja
-```Python
->>> This(Pizza)
-{'s': ('this', 'Pizza')}
-```
-
 
 
 ### Kuidas see töötab? Mod
+
+``Mod``-funktsioon 
 
 ```Haskell
 Mod quality kind = {s = \\n => quality.s ++ kind.s ! n};
