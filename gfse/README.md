@@ -506,9 +506,11 @@ Proovi kas see töötab laitmatult *Minibar*-is.
 
 ## Eesti keele RGLiga variant
 
-@todo: kui oled sisestanud inglise keele koodi ja oled selle akna juures, 
-vali nüüd tekitada uus keele linearisatsioon. Inglise keele kood kopeeritakse 
-sinna automaatselt. Muuda kõik vastavalt eesti keele vajadustele.
+Nüüd kui oled sisestanud inglise keele koodi ja oled veendunud, et see töötab 
+vähemalt sama hästi, mis meie esimese, isenikerdatud inglise keele konkreetse 
+süntaksi puhul. Siis asenda vana eesti keele kood inglise RGLi kasutava koodiga
+ja muuda see vastavalt eesti keele vajadustele. Seekord peaks koodi eestindamine 
+olema palju lihtsam.
 
 
 
