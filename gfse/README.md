@@ -483,16 +483,16 @@ ja kvaliteedist (mis ju varem defineeritud kui adjektiivifraas).
 Seega on seegi funktsioon rekursiivne ja saame moodustada ahelaid 
 ``Very Very ... Very quality``.
 
-``this_Det`` on spetsifitseeritud leksikonis, aga ``cheese`` kirje (ehk 
-käändetabeli) "ehitame" ise, kasutades selleks ``mkN`` mis on varustatud 
-targa paradigmavalijaga (*Smart Paradigms*). Eks hiljem vaatame, kas kõikide 
-sõnade paradigmad valiti õigesti.
-
 ```Haskell
 lin
   This kind = mkNP this_Det kind;
   Cheese  = mkCN (mkN "cheese");
 ```
+
+``this_Det`` on juba spetsifitseeritud leksikonis, aga ``cheese`` kirje (ehk 
+käändetabeli) "ehitame" ise, kasutades selleks ``mkN`` mis on varustatud 
+targa paradigmavalijaga (*Smart Paradigms*). Eks hiljem vaatame, kas kõikide 
+sõnade paradigmad valiti õigesti.
 
 RGLi kasutav kood on tervenisti kirjas [FoodsEngRGL.gf failis](FoodsEngRGL.gf). 
 Loo uus keel või asenda olemasolev kood failis antuga ja püüa aru saada mida 
