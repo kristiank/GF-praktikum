@@ -523,11 +523,29 @@ concrete FoodsEst of Foods =
 }
 ```
 
+
+
+#### Adjektiivadverbiaal
+
+```Haskell
+lin
+  Very quality = mkAP (mkAdv "väga") quality;
+```
+
+Eesti keele puhul võime kasutada adjektiivse adverbiaali asemel lihtsalt adverbiaali.
+
+
+
 #### Asesõnad ja leksikon
 
 ```Haskell
 lin
-  This kind = mkNP this_Det kind; -- this_Det on eesti leksikonis olemas, seda pole vaja muuta
-  Cheese  = mkCN (mkN "juust"); -- kas saab õige paradigma, või on vaja mkN "juust" "juustu" "juustu" ?
+  This kind = mkNP this_Det kind;
+  Cheese  = mkCN (mkN "juust");
 ```
+
+Näitav määratleja this_Det on eesti leksikonis juba olemas, seda pole vaja muuta.
+
+Sõnade puhul tuleb *Minibar*'is üle kontrollida, kas need saavad õiged käändevormid. 
+Vastasel juhul peab kasutama ``mkN "juust" "juustu"`` või koguni ``mkN "juust" "juustu" "juustu"``.
 
