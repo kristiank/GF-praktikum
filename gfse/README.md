@@ -399,8 +399,8 @@ Juhul kui kategooriad on valed, oskab GF kompilaator head nõu anda veateates.
 
 # Köögigrammatika uuesti ja toetudes RGLile
 
-Et kasutada RGLi, on vaja importida õiged moodulid süntaksi, leksikoni 
-ja morfoloogia tarbeks.
+Teeme inglise köögigrammatika uuesti kasutades RGLi. Et kasutada RGLi, 
+on vaja importida õiged moodulid süntaksi, leksikoni ja morfoloogia tarbeks.
 
 ```Haskell
 concrete FoodsEng of Foods =
@@ -409,7 +409,8 @@ concrete FoodsEng of Foods =
 }
 ```
 
-Seejärel on vaja muuta lineariseerimises kasutatud kategooriad. 
+Seejärel on vaja muuta lineariseerimises kasutatud kategooriad. Kasutame nätieks 
+järgmisi kategooriaid:
 
 ```Haskell
 lincat
@@ -419,14 +420,17 @@ lincat
   Item = NP;
 ```
 
-``Utt`` (*utterance*) ehk lausung on diskursuse üksus, mis võib olla lause, küsimus, käsk vms. 
+Seletan kategooriaid veidike lahti. ``Utt`` (*utterance*) ehk lausung on diskursuse üksus, mis võib olla lause, küsimus, käsk vms. 
 ``Cl`` (*clause*) on ühtmoodi lause, mis väljendab mingit propositsiooni nagu nt mõni fakt "see pizza on soe". 
 Lauseliike on palju aga meie siinses väikses köögigrammatikas läheb meil vaja ainult affirmatiivseid lauseid oleviku pöördes.
 ``AP`` (*adjective phrase*) ehk adjektiivifraas.
 ``CN`` (*common noun*) ehk üldnimi. 
 ``NP`` (*noun phrase*) ehk noomenifraas.
 
-Kategooriad on omaette teema, millest siinjuures rohkem juttu ei tule.
+Kategooriad (ehk funktsionaalse programmeerimise tüübid) on omaette teema, 
+millest siinjuures rohkem juttu ei tule. Siinkohal on õige märkida vaid seda, 
+et uued kategooriad on süntaksi kirjeldamiseks paremal abstraktsioonitasemel,
+võimaldades koodist hõlpsamini aru saada.
 
 Veel on vaja muuta lineariseerimisel kasutatud operatsioonid, et need 
 vastaksid äsja spetsifitseeritud kategooriatele.
