@@ -513,5 +513,21 @@ sinna automaatselt. Muuda kõik vastavalt eesti keele vajadustele.
 
 
 ### Näiteid
-ParadigmsEng -> ParadigmsEst
-this_Det on eesti keele leksikonis olemas, seda pole vaja muuta
+
+#### Muuda moodulite nimed vastavalt eesti keelele
+
+```Haskell
+concrete FoodsEst of Foods =
+  open SyntaxEst, LexiconEst, ParadigmsEst in {
+    --
+}
+```
+
+#### Asesõnad ja leksikon
+
+```Haskell
+lin
+  This kind = mkNP this_Det kind; -- this_Det on eesti leksikonis olemas, seda pole vaja muuta
+  Cheese  = mkCN (mkN "juust"); -- kas saab õige paradigma, või on vaja mkN "juust" "juustu" "juustu" ?
+```
+
