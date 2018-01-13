@@ -355,6 +355,15 @@ Pred item quality = {s = item.s ++ "on" ++ quality.s ! item.n};
 
 Küsimus: mida me siinkohal kasutame, et valida omadussõna õige kääne? See on samuti üks viis, kuidas kommunikatsiooni korraldada süntaksipuus.
 
+Siinkohal oleks paslik seletada rohkem lahti seda, kuidas abstraktse 
+grammatika puu sõlmed (s.o tipud ja lehed) sisaldavad ainult funktsioone 
+ning seda, et funktsioonid saavad ligi oma alampuude sõlmedes sisalduvale 
+informatsioonile.
+
+Näiteks ``These Pizza`` puhul valib ``These`` oma alampuu ``Pizza`` funktsioonilt 
+väljastatud käändetabelist vaid mitmuse. Funktsioon ``Pred item quality`` valib 
+mh oma alampuu ``Quality``-sõlmest välja õige informatsiooni kasutades oma 
+``Item``-sõlmes sisalduvat arvu (``quality.s ! item.n``).
 
 
 # Resource Grammar Library
@@ -399,8 +408,12 @@ Juhul kui kategooriad on valed, oskab GF kompilaator head nõu anda veateates.
 
 # Köögigrammatika uuesti ja toetudes RGLile
 
-Teeme inglise köögigrammatika uuesti kasutades RGLi. Et kasutada RGLi, 
-on vaja importida õiged moodulid süntaksi, leksikoni ja morfoloogia tarbeks.
+Teeme inglise köögigrammatika uuesti kasutades RGLi. 
+Tervikkood on antakse teile kätte, aga käime kõigepealt läbi need kohad, 
+mis eelmisest koodist erinevad.
+
+Et kasutada RGLi, on vaja importida õiged moodulid süntaksi, leksikoni 
+ja morfoloogia tarbeks. 
 
 ```Haskell
 concrete FoodsEng of Foods =
@@ -409,57 +422,81 @@ concrete FoodsEng of Foods =
 }
 ```
 
-Seejärel on vaja muuta lineariseerimises kasutatud kategooriad. Kasutame nätieks 
-järgmisi kategooriaid:
+Seejärel on vaja muuta lineariseerimises kasutatud kategooriad. Kasutame 
+näiteks järgmisi kategooriaid:
 
 ```Haskell
 lincat
   Comment = Utt;
   Quality = AP;
-  Kind = CN;
   Item = NP;
+  Kind = CN;
 ```
 
-Seletan kategooriaid veidike lahti. ``Utt`` (*utterance*) ehk lausung on diskursuse üksus, mis võib olla lause, küsimus, käsk vms. 
+Seletan kategooriaid veidike lahti. ``Utt`` (*utterance*) ehk lausung on 
+diskursuse üksus, mis võib olla lause, küsimus, käsk vms. 
 ``Cl`` (*clause*) on ühtmoodi lause, mis väljendab mingit propositsiooni nagu nt mõni fakt "see pizza on soe". 
 Lauseliike on palju aga meie siinses väikses köögigrammatikas läheb meil vaja ainult affirmatiivseid lauseid oleviku pöördes.
 ``AP`` (*adjective phrase*) ehk adjektiivifraas.
+``NP`` (*noun phrase*) ehk noomenifraas. Noomenifraas võib koosneda mh üldnimest.
 ``CN`` (*common noun*) ehk üldnimi. 
-``NP`` (*noun phrase*) ehk noomenifraas.
 
 Kategooriad (ehk funktsionaalse programmeerimise tüübid) on omaette teema, 
 millest siinjuures rohkem juttu ei tule. Siinkohal on õige märkida vaid seda, 
 et uued kategooriad on süntaksi kirjeldamiseks paremal abstraktsioonitasemel,
-võimaldades koodist hõlpsamini aru saada.
+võimaldades koodist hõlpsamini aru saada (mis on eelduseks sujuvaks koostööks 
+lingvisti ja programmeerija-keeletehnoloogi vahel).
 
 Veel on vaja muuta lineariseerimisel kasutatud operatsioonid, et need 
-vastaksid äsja spetsifitseeritud kategooriatele.
+vastaksid äsja spetsifitseeritud kategooriatele. Teeme seda liikudes nö
+ülevalt alla, suuremast üksusest väiksema poole. Kui see suund tundub 
+kummastav, võid proovida lugeda seletused altpoolt üles. Keeleõpikuidki 
+on enam-vähem kahte liiki, need mis alustavad tekstist või lausest ning 
+need, mis alustavad morfoloogiast ja sõna(liikide)st.
 
 ```Haskell
 lin
   Pred item quality = mkUtt (mkCl item quality);
 ```
 
+Predikatsiooni subjekt ja kvaliteet moodustavad lause (``mkCla`` väljastab 
+lause), millest luuakse lausung (``mkUtt``).
+
 ```Haskell
 lin
   Mod quality kind = mkCN quality kind;
 ```
+
+Täiendiga nimisõna moodustab üldnime (``mkCN``). ``Quality`` kategooriaks 
+valisime varem AP ehk adjektiivifraasi ja ``Kind`` kategooriaks on samuti 
+üldnimi. Järelikult saab täiendiga nimisõna mängida samu rolle süntaksipuus, 
+mis teisedki üldnimed, sest mõlemad on ``Kind``.
 
 ```Haskell
 lin
   Very quality = mkAP (mkAdA "very") quality;
 ```
 
-``this_Det`` spetsifitseeritud leksikonis, aga ``cheese`` kirje (ehk 
-käändetabeli) "ehitame" ise.
+Adjektiivifraas moodustatakse omadussõnalisest määrsõnast *very* 
+(*adjective-modifying adverb*) 
+ja kvaliteedist (mis ju varem defineeritud kui adjektiivifraas).
+Seega on seegi funktsioon rekursiivne ja saame moodustada ahelaid 
+``Very Very ... Very quality``.
+
+``this_Det`` on spetsifitseeritud leksikonis, aga ``cheese`` kirje (ehk 
+käändetabeli) "ehitame" ise, kasutades selleks ``mkN`` mis on varustatud 
+targa paradigmavalijaga (*Smart Paradigms*). Eks hiljem vaatame, kas kõikide 
+sõnade paradigmad valiti õigesti.
+
 ```Haskell
 lin
   This kind = mkNP this_Det kind;
   Cheese  = mkCN (mkN "cheese");
 ```
 
-RGL kasutav kood on tervenisti kirjas [FoodsEngRGL.gf failis](FoodsEngRGL.gf). 
-Loo uus või asenda olemasolev kood sellega ja püüa aru saada mida see teeb. 
+RGLi kasutav kood on tervenisti kirjas [FoodsEngRGL.gf failis](FoodsEngRGL.gf). 
+Loo uus keel või asenda olemasolev kood failis antuga ja püüa aru saada mida 
+see teeb. 
 Proovi kas see töötab laitmatult *Minibar*-is.
 
 
