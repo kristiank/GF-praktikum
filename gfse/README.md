@@ -13,6 +13,9 @@ aga teised sellega seotud ressursid on leitavad [GF-Estonian repositooriumis](ht
 
 On olemas ka Pythoniprogrammeerijatele mõeldud "[GF for Python programmers](https://github.com/daherb/GF-for-Python-programmers)"
 
+Süües suureneb isu. Kes tahab midagi kasulikumat arendada, siis soovitan 
+eestindada [chitchat.gf](https://github.com/michmech/chitchat).
+
 
 
 # Alustamine
