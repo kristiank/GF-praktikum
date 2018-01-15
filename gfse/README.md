@@ -7,7 +7,8 @@ Praktikum vajab ainult internetiühendust ja ei vaja eraldi installitud programm
 Praktikumi tekst püüab kõik tehtu seletada otse teksti sees ja illustreerib GF-koodi 
 paralleelselt Pythoni koodiga. 
 Pärast praktikumi leiab iseõppija rohkem abi http://www.grammaticalframework.org/ leheküljelt.
-Eesti RGLi arendatakse [GF-Estonian repositooriumis](https://github.com/GF-Estonian).
+Eesti RGLi arendatakse [GF repos](https://github.com/GrammaticalFramework/GF/tree/master/lib/src/estonian) 
+aga teised sellega seotud ressursid on leitavad [GF-Estonian repositooriumis](https://github.com/GF-Estonian).
 
 
 On olemas ka Pythoniprogrammeerijatele mõeldud "[GF for Python programmers](https://github.com/daherb/GF-for-Python-programmers)"
