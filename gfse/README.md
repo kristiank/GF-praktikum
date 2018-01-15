@@ -373,8 +373,8 @@ mh oma alampuu ``Quality``-sõlmest välja õige informatsiooni kasutades oma
 
 Eelmiselt näidatud viis programmeerida ei ole jätkusuutlik mitmel põhjusel
 * iga rakenduse jaoks peab kopeerima korduvaid lingvistilisi elemente sõnade morfoloogiliste kujude ja lausete konstrueerimiseks
-* esineb nn sünkategoreemilisi kategooriaid (kõik need sõnad, mida sisestatakse otse kuskil lause sisse, nt "on" ``{s = item.s ++ "on" ++ quality.s}``)
-* kood ei ole piisavalt abstraktne -- mh kategooriad on defineeritud andmetüüpidena
+* kõik moodustajad ei kuulu kategooriatesse (s.o kõik need sõnad, mida sisestatakse otse kuskil lause sisse, nt "on" ``{s = item.s ++ "on" ++ quality.s}``)
+* kood ei ole piisavalt abstraktne ja ei ole lingvisti jaoks loetav -- nt on kategooriad defineeritud andmetüüpidena
 
 GF-il on aastate jooksul ja uute keelte lisamisel väljakujunenud traditsioon 
 eraldada need korduvad elemendid teekidesse, mida ühiselt nimetetakse 
