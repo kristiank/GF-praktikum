@@ -11,10 +11,10 @@ Eesti RGLi arendatakse [GF repos](https://github.com/GrammaticalFramework/GF/tre
 aga teised sellega seotud ressursid on leitavad [GF-Estonian repositooriumis](https://github.com/GF-Estonian).
 
 
-On olemas ka Pythoniprogrammeerijatele mõeldud "[GF for Python programmers](https://github.com/daherb/GF-for-Python-programmers)"
+On olemas ka Pythoniprogrammeerijatele mõeldud sissejuhatus "[GF for Python programmers](https://github.com/daherb/GF-for-Python-programmers)", mis aitab maailma ümbermõtestada imperatiivsest programmeerimisviisist funktsionaalsele viisile.
 
 Süües suureneb isu. Kes tahab midagi kasulikumat arendada, siis soovitan 
-eestindada [chitchat.gf](https://github.com/michmech/chitchat).
+eestindada [chitchat.gf](https://github.com/michmech/chitchat). Ka on võimalik GFi grammatikaid kasutada läbi NLTK või üldse kompileerida Pythoni mooduliks.
 
 
 
